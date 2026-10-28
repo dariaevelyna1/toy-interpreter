@@ -1,5 +1,6 @@
 package interpreter.model.exp;
 
+import interpreter.exceptions.MyException;
 import interpreter.model.value.IValue;
 
 public interface IExp {
