@@ -1,4 +1,22 @@
 package interpreter.model.value;
 
-public record BoolValue() {
+import interpreter.model.type.BoolType;
+import interpreter.model.type.IType;
+
+public record BoolValue(boolean val) implements IValue {
+    @Override
+    public IType getType() {
+        return new BoolType();
+    }
+    @Override
+    public String toString() {
+        if(val) {
+            return "true";
+        }
+        else {
+            return "false";
+        }
+    }
+
+
 }
