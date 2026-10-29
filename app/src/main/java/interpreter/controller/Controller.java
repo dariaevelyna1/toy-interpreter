@@ -11,7 +11,7 @@ public class Controller {
     private boolean display;
     public Controller(IRepository repo, boolean displayFlag) {
         this.repo = repo;
-        this.display = display;
+        this.display = displayFlag;
     }
 
     public PrgState oneStep(PrgState state) throws MyException {
@@ -36,7 +36,5 @@ public class Controller {
             display(prg);
         }
     }
-
-
 
 }

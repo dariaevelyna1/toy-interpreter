@@ -33,6 +33,10 @@ public class MyDictionary<K,V> implements IDictionary<K,V>{
         }
         dict.put(key, value);
     }
+    @Override
+    public String toString() {
+        return dict.toString();
+    }
 
 
 }
