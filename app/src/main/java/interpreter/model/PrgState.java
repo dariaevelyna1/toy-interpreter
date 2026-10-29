@@ -30,7 +30,8 @@ public class PrgState {
         return this.symTable;
     }
 
-
-
+    public IList<IValue> getOut() {
+        return this.out;
+    }
 
 }
