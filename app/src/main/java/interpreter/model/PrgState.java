@@ -22,7 +22,7 @@ public class PrgState {
         exeStack.push(program);
     }
 
-    public IStack getExeStack() {
+    public IStack<IStmt> getExeStack() {
         return this.exeStack;
     }
 
@@ -34,4 +34,10 @@ public class PrgState {
         return this.out;
     }
 
+    @Override
+    public String toString() {
+        return "ExeStack: " + exeStack + "\n"
+                + "SymTable: " + symTable + "\n"
+                + "Out: " + out + "\n";
+    }
 }

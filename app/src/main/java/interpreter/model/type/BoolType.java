@@ -11,6 +11,6 @@ public record BoolType() implements IType {
 
     @Override
     public String toString() {
-        return "boolean";
+        return "bool";
     }
 }

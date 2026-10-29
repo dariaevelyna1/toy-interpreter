@@ -9,4 +9,9 @@ public record VarExp(String var) implements IExp {
     public IValue eval(IDictionary<String, IValue> symTable) throws MyException {
         return symTable.lookup(var);
     }
+
+    @Override
+    public String toString() {
+        return var;
+    }
 }
