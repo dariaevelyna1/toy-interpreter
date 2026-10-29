@@ -2,6 +2,7 @@ package interpreter.model.exp;
 
 import interpreter.exceptions.ExpressionException;
 import interpreter.exceptions.MyException;
+import interpreter.model.adt.IDictionary;
 import interpreter.model.value.IValue;
 import interpreter.model.value.IntValue;
 

@@ -1,4 +1,11 @@
 package interpreter.model.adt;
 
-public class IDictionary {
+import interpreter.exceptions.ADTException;
+
+public interface IDictionary<K,V> {
+    V lookup(K key);
+    void update(K key, V newValue) throws ADTException;
+    boolean isDefined(K key);
+    void put(K key, V value);
+
 }

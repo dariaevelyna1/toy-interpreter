@@ -5,6 +5,5 @@ public enum ArithOp {
     private final String symbol;
     ArithOp(String symbol) { this.symbol = symbol; }
     @Override public String toString() { return symbol; }
-
 }
 
