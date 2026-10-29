@@ -1,6 +1,9 @@
 package interpreter.model.stmt;
 
-public interface IStmt {
+import interpreter.exceptions.MyException;
+import interpreter.model.PrgState;
 
+public interface IStmt {
+    PrgState execute(PrgState state) throws MyException;
 
 }
