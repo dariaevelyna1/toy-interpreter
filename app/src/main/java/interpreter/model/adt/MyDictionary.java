@@ -41,5 +41,15 @@ public class MyDictionary<K,V> implements IDictionary<K,V>{
         return dict.toString();
     }
 
+    @Override
+    public void remove(K key) {
+
+    }
+
+    @Override
+    public Map<K,V> toMap() {
+        return Map.copyOf(dict);
+    }
+
 
 }

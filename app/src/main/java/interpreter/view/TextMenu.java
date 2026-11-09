@@ -3,9 +3,6 @@ package interpreter.view;
 import interpreter.controller.Controller;
 import interpreter.exceptions.MyException;
 import interpreter.model.PrgState;
-import interpreter.model.adt.MyDictionary;
-import interpreter.model.adt.MyList;
-import interpreter.model.adt.MyStack;
 import interpreter.model.stmt.IStmt;
 import interpreter.repository.IRepository;
 import interpreter.repository.Repository;
@@ -69,7 +66,7 @@ public class TextMenu {
             System.out.println("No program selected");
             return;
         }
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), selectedProgram);
+        PrgState state = PrgState.of(selectedProgram);
         IRepository repo = new Repository(state);
         Controller controller = new Controller(repo, true);
         try{

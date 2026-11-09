@@ -4,9 +4,6 @@ import interpreter.exceptions.ExpressionException;
 import interpreter.exceptions.MyException;
 import interpreter.exceptions.StatementException;
 import interpreter.model.PrgState;
-import interpreter.model.adt.MyDictionary;
-import interpreter.model.adt.MyList;
-import interpreter.model.adt.MyStack;
 import interpreter.model.exp.ArithExp;
 import interpreter.model.exp.ArithOp;
 import interpreter.model.exp.ValueExp;
@@ -23,7 +20,7 @@ class ControllerTest {
 
     // runs a whole program with display off and returns the final state
     private static PrgState run(IStmt program) throws MyException {
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), program);
+        PrgState  state = PrgState.of(program);
         new Controller(new Repository(state), false).allStep();
         return state;
     }
@@ -54,7 +51,7 @@ class ControllerTest {
 
     @Test
     void oneStepOnEmptyStackThrows() throws MyException {
-        PrgState state = new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(), new NopStmt());
+        PrgState  state = PrgState.of(new NopStmt());
         state.getExeStack().pop();   // now the stack is empty
         Controller controller = new Controller(new Repository(state), false);
         assertThrows(StatementException.class, () -> controller.oneStep(state));

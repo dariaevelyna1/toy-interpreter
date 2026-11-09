@@ -1,7 +1,11 @@
 package interpreter.model.adt;
+
 import interpreter.exceptions.ADTException;
+
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 
 
 public class MyStack<T> implements IStack<T> {
@@ -25,8 +29,14 @@ public class MyStack<T> implements IStack<T> {
         return stack.isEmpty();
     }
 
-    @Override public String toString() {
+    @Override
+    public String toString() {
         return stack.toString();
     }
 
+    @Override
+    public List<T> toList() {
+        List<T> copy = new ArrayList<>(stack);
+        return copy.reversed();
+    }
 }
