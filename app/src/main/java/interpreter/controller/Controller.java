@@ -30,6 +30,7 @@ public class Controller {
     }
     public void allStep() throws MyException {
         PrgState prg = repo.getCrtPrg();
+        repo.logPrgStateExec();
         display(prg);
         while (!prg.getExeStack().isEmpty()) {
             oneStep(prg);

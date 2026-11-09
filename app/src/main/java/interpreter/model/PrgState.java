@@ -35,7 +35,7 @@ public class PrgState {
         return this.exeStack;
     }
 
-    public IDictionary<String, IValue> getSymTable(){
+    public IDictionary<String, IValue> getSymTable() {
         return this.symTable;
     }
 
@@ -46,6 +46,7 @@ public class PrgState {
     public IDictionary<StringValue, BufferedReader> getFileTable() {
         return this.fileTable;
     }
+
     @Override
     public String toString() {
         return "ExeStack: " + exeStack + "\n"
@@ -55,11 +56,16 @@ public class PrgState {
     }
 
     public String toLogString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("ExeStack: ").append(exeStack.toString()).append("\n");
-        sb.append("SymTable: ").append(symTable.toString()).append("\n");
-        sb.append("Out: ").append(out.toString()).append("\n");
-        sb.append("FileTable: ").append(fileTable.toString()).append("\n");
+        var sb = new StringBuilder();
+        sb.append("ExeStack:\n");
+        exeStack.toList().forEach(s -> sb.append(s).append('\n'));
+        sb.append("SymTable:\n");
+        symTable.toMap().forEach((k, v) ->
+                sb.append(k).append(" --> ").append(v).append('\n'));
+        sb.append("Out:\n");
+        out.toList().forEach(v -> sb.append(v).append('\n'));
+        sb.append("FileTable:\n");
+        fileTable.toMap().keySet().forEach(f -> sb.append(f.val()).append('\n'));
         return sb.toString();
     }
 }
