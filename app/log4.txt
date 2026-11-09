@@ -1,0 +1,43 @@
+ExeStack:
+(string varf; (varf = "test.in"; (openRFile(varf); (int varc; (readFile(varf,varc); (print(varc); (readFile(varf,varc); (print(varc); CloseRFileStmt[exp=varf]))))))))
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(varf = "test.in"; (openRFile(varf); (int varc; (readFile(varf,varc); (print(varc); (readFile(varf,varc); (print(varc); CloseRFileStmt[exp=varf])))))))
+string varf
+SymTable:
+Out:
+FileTable:
+
+ExeStack:
+(varf = "test.in"; (openRFile(varf); (int varc; (readFile(varf,varc); (print(varc); (readFile(varf,varc); (print(varc); CloseRFileStmt[exp=varf])))))))
+SymTable:
+varf --> ""
+Out:
+FileTable:
+
+ExeStack:
+(openRFile(varf); (int varc; (readFile(varf,varc); (print(varc); (readFile(varf,varc); (print(varc); CloseRFileStmt[exp=varf]))))))
+varf = "test.in"
+SymTable:
+varf --> ""
+Out:
+FileTable:
+
+ExeStack:
+(openRFile(varf); (int varc; (readFile(varf,varc); (print(varc); (readFile(varf,varc); (print(varc); CloseRFileStmt[exp=varf]))))))
+SymTable:
+varf --> "test.in"
+Out:
+FileTable:
+
+ExeStack:
+(int varc; (readFile(varf,varc); (print(varc); (readFile(varf,varc); (print(varc); CloseRFileStmt[exp=varf])))))
+openRFile(varf)
+SymTable:
+varf --> "test.in"
+Out:
+FileTable:
+
