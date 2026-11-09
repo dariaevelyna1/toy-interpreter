@@ -45,6 +45,7 @@ public class TextMenu {
         System.out.println("1. " + Examples.ex1);
         System.out.println("2. " + Examples.ex2);
         System.out.println("3. " + Examples.ex3);
+        System.out.println("4. " + Examples.ex4);
         System.out.print("Program: ");
         String choice = scanner.nextLine();
         if (choice.equals("1")) {
@@ -53,7 +54,10 @@ public class TextMenu {
             selectedProgram = Examples.ex2;
         } else if (choice.equals("3")) {
             selectedProgram = Examples.ex3;
-        } else {
+        } else if (choice.equals("4")) {
+            selectedProgram = Examples.ex4;
+        }
+        else {
             System.out.println("Invalid program");
             return;
         }

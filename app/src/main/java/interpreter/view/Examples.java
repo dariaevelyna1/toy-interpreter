@@ -11,11 +11,11 @@ import interpreter.model.value.BoolValue;
 import interpreter.model.value.IntValue;
 
 public class Examples {
-    // Ex1: int v; v = 2; print(v)
+
     public static IStmt ex1 = new CompStmt(new VarDeclStmt("v", new IntType()),
             new CompStmt(new AssignStmt("v", new ValueExp(new IntValue(2))),
                     new PrintStmt(new VarExp("v"))));
-    // Ex2: int a; int b; a = 2 + 3 * 5; b = a + 1; print(b)
+
     public static IStmt ex2 = new CompStmt(new VarDeclStmt("a", new IntType()),
             new CompStmt(new VarDeclStmt("b", new IntType()),
                     new CompStmt(new AssignStmt("a",
@@ -26,7 +26,7 @@ public class Examples {
                                     new ArithExp(ArithOp.ADD, new VarExp("a"),
                                             new ValueExp(new IntValue(1)))),
                                     new PrintStmt(new VarExp("b"))))));
-    // Ex3: bool a; int v; a = true; (if a then v = 2 else v = 3); print(v)
+
     public static IStmt ex3 = new CompStmt(new VarDeclStmt("a", new BoolType()),
             new CompStmt(new VarDeclStmt("v", new IntType()),
                     new CompStmt(new AssignStmt("a", new ValueExp(new BoolValue(true))),
@@ -34,5 +34,10 @@ public class Examples {
                                     new AssignStmt("v", new ValueExp(new IntValue(2))),
                                     new AssignStmt("v", new ValueExp(new IntValue(3)))),
                                     new PrintStmt(new VarExp("v"))))));
+
+    public static final IStmt ex4 =
+            new CompStmt(new VarDeclStmt("a", new BoolType()),
+                    new CompStmt(new AssignStmt("a", new ValueExp(new IntValue(2))),
+                            new PrintStmt(new VarExp("a"))));
 
 }
