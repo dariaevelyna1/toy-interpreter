@@ -43,6 +43,9 @@ public class PrgState {
         return this.out;
     }
 
+    public IDictionary<StringValue, BufferedReader> getFileTable() {
+        return this.fileTable;
+    }
     @Override
     public String toString() {
         return "ExeStack: " + exeStack + "\n"
