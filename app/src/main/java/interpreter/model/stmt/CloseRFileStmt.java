@@ -9,15 +9,13 @@ import interpreter.model.value.StringValue;
 import java.io.BufferedReader;
 import java.io.IOException;
 
-
-
 public record CloseRFileStmt(IExp exp) implements IStmt {
     @Override
     public PrgState execute(PrgState state) throws MyException {
-        if(!(exp.eval(state.getSymTable()) instanceof StringValue filename)) {
+        if (!(exp.eval(state.getSymTable()) instanceof StringValue filename)) {
             throw new StatementException("the parameter is not a string");
         }
-        if(state.getFileTable().isDefined(filename)) {
+        if (!state.getFileTable().isDefined(filename)) {
             throw new StatementException("the file is not opened");
         }
         BufferedReader reader = state.getFileTable().lookup(filename);

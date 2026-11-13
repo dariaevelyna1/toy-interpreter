@@ -42,8 +42,11 @@ public class MyDictionary<K,V> implements IDictionary<K,V>{
     }
 
     @Override
-    public void remove(K key) {
-
+    public void remove(K key) throws ADTException {
+        if (!dict.containsKey(key)) {
+            throw new ADTException("key " + key + " is not defined");
+        }
+        dict.remove(key);
     }
 
     @Override
