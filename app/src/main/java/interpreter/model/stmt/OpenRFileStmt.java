@@ -20,7 +20,7 @@ public record OpenRFileStmt(IExp exp) implements IStmt {
             throw new StatementException("openRFile: " + fileName + " is already open");
 
         try {
-            // no try-with-resources: the file must stay open until closeRFile
+
             var reader = new BufferedReader(new FileReader(fileName.val()));
             fileTable.put(fileName, reader);
         } catch (IOException e) {

@@ -55,6 +55,7 @@ public class PrgState {
                 + "Out: " + out + "\n";
     }
 
+
     public String toLogString() {
         var sb = new StringBuilder();
         sb.append("ExeStack:\n");
