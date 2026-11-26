@@ -1,8 +1,10 @@
+import interpreter.exceptions.ADTException;
 import interpreter.model.adt.IHeap;
 import interpreter.model.value.IValue;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class MyHeap implements IHeap {
     private Map<Integer, IValue> heap = new HashMap<>();
@@ -18,4 +20,43 @@ public class MyHeap implements IHeap {
     }
     // TODO: get and update (a missing address -> ADTException), isDefined,
     // getContent (Map.copyOf(heap)), toString
+
+    @Override
+    public void update(int address, IValue value) throws ADTException {
+        if(!heap.containsKey(address)) {
+            throw new ADTException("heap: address " + address + " is not in the heap");
+        }
+        heap.put(address,value);
+    }
+
+
+    @Override
+    public IValue get(int address) throws ADTException {
+        if (!heap.containsKey(address)) {
+            throw new ADTException("heap: address " + address + " is not in the heap");
+        }
+        return heap.get(address);
+    }
+
+    @Override
+    public boolean isDefined(int address) {
+        return heap.containsKey(address);
+    }
+
+    @Override
+    public Map<Integer, IValue> getContent() {
+        return Map.copyOf(heap);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder text = new StringBuilder();
+        Map<Integer, IValue> sorted = new TreeMap<>(heap);
+        for (Map.Entry<Integer, IValue> entry : sorted.entrySet()) {
+            text.append(entry.getKey()).append(" --> ").append(entry.getValue()).append("\n");
+        }
+        return text.toString();
+    }
 }
+

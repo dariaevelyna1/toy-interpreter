@@ -5,7 +5,9 @@ import interpreter.model.stmt.IStmt;
 import interpreter.model.value.IValue;
 import interpreter.model.value.StringValue;
 
+
 import java.io.BufferedReader;
+import java.util.TreeMap;
 
 public class PrgState {
     private IStack<IStmt> exeStack;
@@ -13,23 +15,30 @@ public class PrgState {
     private IList<IValue> out;
     private IDictionary<StringValue, BufferedReader> fileTable;
     private final IStmt originalProgram;
+    private final IHeap heap;
 
 
     public PrgState(IStack<IStmt> exeStack, IDictionary<String, IValue> symTable,
-                    IList<IValue> out, IDictionary<StringValue, BufferedReader> fileTable, IStmt program) {
+                    IList<IValue> out, IDictionary<StringValue, BufferedReader> fileTable, IStmt program, IHeap heap) {
         this.exeStack = exeStack;
         this.symTable = symTable;
         this.out = out;
         this.fileTable = fileTable;
         this.originalProgram = program;
+        this.heap = heap;
         exeStack.push(program);
     }
 
 
     public static PrgState of(IStmt program) {
         return new PrgState(new MyStack<>(), new MyDictionary<>(), new MyList<>(),
-                new MyDictionary<>(), program);
+                new MyDictionary<>(), new MyHeap(), program);
     }
+
+    public IHeap getHeap() {
+        return heap;
+    }
+
 
     public IStack<IStmt> getExeStack() {
         return this.exeStack;
@@ -52,7 +61,9 @@ public class PrgState {
         return "ExeStack: " + exeStack + "\n"
                 + "SymTable: " + symTable + "\n"
                 + "FileTable " + fileTable + "\n"
-                + "Out: " + out + "\n";
+                + "Out: " + out + "\n"
+                + "Heap: " + heap.getContent() + "\n";
+
     }
 
 
@@ -67,6 +78,9 @@ public class PrgState {
         out.toList().forEach(v -> sb.append(v).append('\n'));
         sb.append("FileTable:\n");
         fileTable.toMap().keySet().forEach(f -> sb.append(f.val()).append('\n'));
+        sb.append("Heap:\n");
+        new TreeMap<>(heap.getContent()).forEach((address, value) ->
+                sb.append(address).append(" --> ").append(value).append('\n'));
         return sb.toString();
     }
 }
