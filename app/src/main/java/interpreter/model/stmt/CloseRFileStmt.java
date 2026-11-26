@@ -12,7 +12,7 @@ import java.io.IOException;
 public record CloseRFileStmt(IExp exp) implements IStmt {
     @Override
     public PrgState execute(PrgState state) throws MyException {
-        if (!(exp.eval(state.getSymTable()) instanceof StringValue filename)) {
+        if (!(exp.eval(state.getSymTable(), state.getHeap()) instanceof StringValue filename)) {
             throw new StatementException("the parameter is not a string");
         }
         if (!state.getFileTable().isDefined(filename)) {

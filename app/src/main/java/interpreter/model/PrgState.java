@@ -1,5 +1,4 @@
 package interpreter.model;
-
 import interpreter.model.adt.*;
 import interpreter.model.stmt.IStmt;
 import interpreter.model.value.IValue;
