@@ -18,7 +18,7 @@ class RelationalExpTest {
     private BoolValue eval(RelOp op, int a, int b) throws Exception {
         return (BoolValue) new RelationalExp(op,
                 new ValueExp(new IntValue(a)), new ValueExp(new IntValue(b)))
-                .eval(state.getSymTable());
+                .eval(state.getSymTable(), state.getHeap());
     }
 
     @Test
@@ -63,6 +63,6 @@ class RelationalExpTest {
     void nonIntegerOperandThrows() {
         RelationalExp exp = new RelationalExp(RelOp.LT,
                 new ValueExp(new StringValue("x")), new ValueExp(new IntValue(5)));
-        assertThrows(ExpressionException.class, () -> exp.eval(state.getSymTable()));
+        assertThrows(ExpressionException.class, () -> exp.eval(state.getSymTable(), state.getHeap()));
     }
 }

@@ -4,6 +4,7 @@ import interpreter.exceptions.ExpressionException;
 import interpreter.exceptions.MyException;
 import interpreter.model.adt.IDictionary;
 import interpreter.model.adt.MyDictionary;
+import interpreter.model.adt.MyHeap;
 import interpreter.model.value.BoolValue;
 import interpreter.model.value.IValue;
 import interpreter.model.value.IntValue;
@@ -28,25 +29,25 @@ class ArithExpTest {
     @Test
     void additionWorks() throws MyException {
         IExp e = new ArithExp(ArithOp.ADD, num(2), num(3));
-        assertEquals(new IntValue(5), e.eval(symTable));
+        assertEquals(new IntValue(5), e.eval(symTable, new MyHeap()));
     }
 
     @Test
     void subtractionWorks() throws MyException {
         IExp e = new ArithExp(ArithOp.SUB, num(7), num(3));
-        assertEquals(new IntValue(4), e.eval(symTable));
+        assertEquals(new IntValue(4), e.eval(symTable, new MyHeap()));
     }
 
     @Test
     void multiplicationWorks() throws MyException {
         IExp e = new ArithExp(ArithOp.MUL, num(4), num(5));
-        assertEquals(new IntValue(20), e.eval(symTable));
+        assertEquals(new IntValue(20), e.eval(symTable, new MyHeap()));
     }
 
     @Test
     void divisionWorks() throws MyException {
         IExp e = new ArithExp(ArithOp.DIV, num(10), num(2));
-        assertEquals(new IntValue(5), e.eval(symTable));
+        assertEquals(new IntValue(5), e.eval(symTable, new MyHeap()));
     }
 
     @Test
@@ -54,37 +55,37 @@ class ArithExpTest {
         // 2 + 3 * 5
         IExp e = new ArithExp(ArithOp.ADD, num(2),
                 new ArithExp(ArithOp.MUL, num(3), num(5)));
-        assertEquals(new IntValue(17), e.eval(symTable));
+        assertEquals(new IntValue(17), e.eval(symTable, new MyHeap()));
     }
 
     @Test
     void divisionByZeroThrows() {
         IExp e = new ArithExp(ArithOp.DIV, num(1), num(0));
-        assertThrows(ExpressionException.class, () -> e.eval(symTable));
+        assertThrows(ExpressionException.class, () -> e.eval(symTable, new MyHeap()));
     }
 
     @Test
     void firstOperandNotIntegerThrows() {
         IExp e = new ArithExp(ArithOp.ADD, new ValueExp(new BoolValue(true)), num(1));
-        assertThrows(ExpressionException.class, () -> e.eval(symTable));
+        assertThrows(ExpressionException.class, () -> e.eval(symTable, new MyHeap()));
     }
 
     @Test
     void secondOperandNotIntegerThrows() {
         IExp e = new ArithExp(ArithOp.ADD, num(1), new ValueExp(new BoolValue(true)));
-        assertThrows(ExpressionException.class, () -> e.eval(symTable));
+        assertThrows(ExpressionException.class, () -> e.eval(symTable, new MyHeap()));
     }
 
     @Test
     void usesVariableFromSymTable() throws MyException {
         symTable.put("a", new IntValue(17));
         IExp e = new ArithExp(ArithOp.ADD, new VarExp("a"), num(1));
-        assertEquals(new IntValue(18), e.eval(symTable));
+        assertEquals(new IntValue(18), e.eval(symTable, new MyHeap()));
     }
 
     @Test
     void undefinedVariableInOperandThrows() {
         IExp e = new ArithExp(ArithOp.ADD, new VarExp("x"), num(1));
-        assertThrows(ExpressionException.class, () -> e.eval(symTable));
+        assertThrows(ExpressionException.class, () -> e.eval(symTable, new MyHeap()));
     }
 }

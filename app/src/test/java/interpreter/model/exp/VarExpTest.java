@@ -4,6 +4,7 @@ import interpreter.exceptions.ExpressionException;
 import interpreter.exceptions.MyException;
 import interpreter.model.adt.IDictionary;
 import interpreter.model.adt.MyDictionary;
+import interpreter.model.adt.MyHeap;
 import interpreter.model.value.BoolValue;
 import interpreter.model.value.IValue;
 import interpreter.model.value.IntValue;
@@ -24,18 +25,18 @@ class VarExpTest {
     @Test
     void returnsValueOfIntVariable() throws MyException {
         symTable.put("v", new IntValue(2));
-        assertEquals(new IntValue(2), new VarExp("v").eval(symTable));
+        assertEquals(new IntValue(2), new VarExp("v").eval(symTable, new MyHeap()));
     }
 
     @Test
     void returnsValueOfBoolVariable() throws MyException {
         symTable.put("a", new BoolValue(true));
-        assertEquals(new BoolValue(true), new VarExp("a").eval(symTable));
+        assertEquals(new BoolValue(true), new VarExp("a").eval(symTable, new MyHeap()));
     }
 
     @Test
     void undefinedVariableThrows() {
         IExp e = new VarExp("x");
-        assertThrows(ExpressionException.class, () -> e.eval(symTable));
+        assertThrows(ExpressionException.class, () -> e.eval(symTable, new MyHeap()));
     }
 }
