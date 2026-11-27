@@ -1,9 +1,9 @@
 package interpreter.model;
+
 import interpreter.model.adt.*;
 import interpreter.model.stmt.IStmt;
 import interpreter.model.value.IValue;
 import interpreter.model.value.StringValue;
-
 
 import java.io.BufferedReader;
 import java.util.TreeMap;
@@ -13,18 +13,19 @@ public class PrgState {
     private IDictionary<String, IValue> symTable;
     private IList<IValue> out;
     private IDictionary<StringValue, BufferedReader> fileTable;
-    private final IStmt originalProgram;
     private final IHeap heap;
+    private final IStmt originalProgram;
 
 
     public PrgState(IStack<IStmt> exeStack, IDictionary<String, IValue> symTable,
-                    IList<IValue> out, IDictionary<StringValue, BufferedReader> fileTable, IStmt program, IHeap heap) {
+                    IList<IValue> out, IDictionary<StringValue, BufferedReader> fileTable,
+                    IHeap heap, IStmt program) {
         this.exeStack = exeStack;
         this.symTable = symTable;
         this.out = out;
         this.fileTable = fileTable;
-        this.originalProgram = program;
         this.heap = heap;
+        this.originalProgram = program;
         exeStack.push(program);
     }
 
@@ -37,7 +38,6 @@ public class PrgState {
     public IHeap getHeap() {
         return heap;
     }
-
 
     public IStack<IStmt> getExeStack() {
         return this.exeStack;
@@ -62,7 +62,6 @@ public class PrgState {
                 + "FileTable " + fileTable + "\n"
                 + "Out: " + out + "\n"
                 + "Heap: " + heap.getContent() + "\n";
-
     }
 
 
